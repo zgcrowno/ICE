@@ -1,9 +1,0 @@
-﻿  Mover.cpp
-C:\Users\Admin\Documents\OrxProjects\ICE\src\Mover.cpp(61,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Admin\Documents\OrxProjects\ICE\src\Mover.cpp(61,26): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
-     Creating library ..\..\..\bin\ICEd.lib and object ..\..\..\bin\ICEd.exp
-  ICE.vcxproj -> C:\Users\Admin\Documents\OrxProjects\ICE\build\windows\vs2019\..\..\..\bin\ICEd.exe
-  C:\Users\Admin\Documents\orx\code\lib\dynamic\orx.dll
-  C:\Users\Admin\Documents\orx\code\lib\dynamic\orxd.dll
-  C:\Users\Admin\Documents\orx\code\lib\dynamic\orxp.dll
-          3 file(s) copied.
