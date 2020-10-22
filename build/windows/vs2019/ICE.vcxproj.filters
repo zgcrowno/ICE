@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{37E30DEB-3417-004C-9A14-4E09B969CD2F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{3B9C327E-7501-0648-B47D-9A68FEE50E0B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Scroll">
+      <UniqueIdentifier>{B675B91C-2A25-144C-A711-B8127DA70894}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inline">
+      <UniqueIdentifier>{34533157-94D3-1445-9BA5-882B1D55D3A3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{65F0ADE4-D6AE-FF48-BCF7-558B72B071F9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\Scroll\Scroll.inl">
+      <Filter>inline</Filter>
+    </None>
+    <None Include="..\..\..\include\Scroll\ScrollBase.inl">
+      <Filter>inline</Filter>
+    </None>
+    <None Include="..\..\..\include\Scroll\ScrollEd.inl">
+      <Filter>inline</Filter>
+    </None>
+    <None Include="..\..\..\include\Scroll\ScrollObject.inl">
+      <Filter>inline</Filter>
+    </None>
+    <None Include="..\..\..\data\config\CreationTemplate.ini">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\data\config\ICE.ini">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\data\config\ICEd.ini">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\data\config\ICEp.ini">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\data\config\SettingsTemplate.ini">
+      <Filter>config</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\ICE.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Object.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Scroll\Scroll.h">
+      <Filter>include\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Scroll\ScrollBase.h">
+      <Filter>include\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Scroll\ScrollEd.h">
+      <Filter>include\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Scroll\ScrollObject.h">
+      <Filter>include\Scroll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Boss.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Circuit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\CircuitSegment.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Enemy.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Mover.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Player.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Projectile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ProjectileEnemy.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ProjectilePlayer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Scene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Level.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Util.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Killable.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\Activable.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\ICE.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Boss.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Circuit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\CircuitSegment.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Enemy.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Mover.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Projectile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ProjectileEnemy.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ProjectilePlayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Level.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Util.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
