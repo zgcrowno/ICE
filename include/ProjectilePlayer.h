@@ -5,7 +5,7 @@
 
 namespace ice
 {
-    class ProjectilePlayer : public Mover
+    class ProjectilePlayer : public Projectile
     {
     protected:
         virtual void OnCreate();
@@ -17,7 +17,5 @@ namespace ice
             const orxVECTOR& _rvPosition,
             const orxVECTOR& _rvNormal);
         virtual void Update(const orxCLOCK_INFO& _rstInfo);
-    public:
-        void TransitionToCircuitSegment(const bool _left, const orxVECTOR& _curPos);
     };
 }

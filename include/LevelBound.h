@@ -1,13 +1,10 @@
 #pragma once
 
 #include "ICE.h"
-#include "Activable.h"
-#include "Killable.h"
-#include "Mover.h"
 
 namespace ice
 {
-    class Player : public Mover, public Killable, public Activable
+    class LevelBound : public ScrollObject
     {
     protected:
         virtual void OnCreate();
@@ -19,11 +16,5 @@ namespace ice
             const orxVECTOR& _rvPosition,
             const orxVECTOR& _rvNormal);
         virtual void Update(const orxCLOCK_INFO& _rstInfo);
-    public:
-        orxSPAWNER* m_pProjectilePlayerSpawner;
-
-        void TransitionToCircuitSegment(const bool _left, const orxVECTOR& _curPos);
-        void Die();
-        void TakeDamage(const int _damage);
     };
 }

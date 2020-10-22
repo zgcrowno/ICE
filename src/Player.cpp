@@ -12,11 +12,17 @@ void Player::OnCreate()
     if (orxConfig_PushSection(GetModelName()))
     {
         m_iHP = orxConfig_GetU32("HP");
-        m_iMaxActiveProjectiles = orxConfig_GetU32("MaxActiveProjectiles");
-        m_fMaxWaveDelay = orxConfig_GetFloat("MaxWaveDelay");
 
         orxConfig_PopSection();
     }
+    for (ScrollObject* child = GetOwnedChild(); child; child = child->GetOwnedChild())
+    {
+        if (!orxString_Compare(child->GetModelName(), "O-ProjectilePlayerSpawner"))
+        {
+            m_pProjectilePlayerSpawner = orxSPAWNER(_orxObject_GetStructure(GetOwnedChild()->GetOrxObject(), orxSTRUCTURE_ID_SPAWNER));
+        }
+    }
+    orxSpawner_Enable(m_pProjectilePlayerSpawner, false);
 }
 
 void Player::OnDelete()
@@ -78,15 +84,23 @@ void Player::Update(const orxCLOCK_INFO& _rstInfo)
             // Shoot projectiles.
             if (orxInput_IsActive("Shoot"))
             {
-                Shoot();
+                orxSpawner_Enable(m_pProjectilePlayerSpawner, true);
             }
-            // DECREMENTS
-            if (m_fWaveDelay > 0)
+            else
             {
-                m_fWaveDelay -= _rstInfo.fDT;
+                orxSpawner_Enable(m_pProjectilePlayerSpawner, false);
             }
         }
     }
+    // Set aiming rotation of player.
+    orxVECTOR curPos = orxVECTOR_0;
+    GetPosition(curPos);
+    orxVECTOR mousePos = orxVECTOR_0;
+    orxMouse_GetPosition(&mousePos);
+    orxRender_GetWorldPosition(&mousePos, orxViewport_Get("MainViewport"), &mousePos);
+    // Get the angle between the player and the mouse.
+    float angleBetween = atan2f(mousePos.fY - curPos.fY, mousePos.fX - curPos.fX);
+    SetRotation(angleBetween);
 }
 
 void Player::TransitionToCircuitSegment(const bool _left, const orxVECTOR& _curPos)
@@ -115,19 +129,5 @@ void Player::TakeDamage(const int _damage)
     if (m_iHP <= 0)
     {
         Die();
-    }
-}
-
-void Player::Shoot()
-{
-    if (m_fWaveDelay <= 0 && (m_iMaxActiveProjectiles < 0 || ICE::GetInstance().GetPlayerProjectiles().size() < m_iMaxActiveProjectiles))
-    {
-        m_fWaveDelay = m_fMaxWaveDelay;
-        orxVECTOR curPos = orxVECTOR_0;
-        GetPosition(curPos);
-        ProjectilePlayer* shot = static_cast<ProjectilePlayer*>(ICE::GetInstance().CreateObject("O-ProjectilePlayer"));
-        shot->SetPosition(curPos);
-        shot->m_pCircuitSegment = m_pCircuitSegment;
-        orxObject_SetOwner(shot->GetOrxObject(), GetOrxObject());
     }
 }

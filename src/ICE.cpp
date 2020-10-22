@@ -26,6 +26,7 @@ extern "C"
 #include "CircuitSegment.h"
 #include "Enemy.h"
 #include "Level.h"
+#include "LevelBound.h"
 #include "Player.h"
 #include "Projectile.h"
 #include "ProjectileEnemy.h"
@@ -87,6 +88,7 @@ void ICE::BindObjects()
     ScrollBindObject<CircuitSegment>("O-CircuitSegment");
     ScrollBindObject<Enemy>("O-Enemy");
     ScrollBindObject<Level>("O-Level");
+    ScrollBindObject<LevelBound>("O-LevelBound");
     ScrollBindObject<Player>("O-Player");
     ScrollBindObject<Projectile>("O-Projectile");
     ScrollBindObject<ProjectileEnemy>("O-ProjectileEnemy");
