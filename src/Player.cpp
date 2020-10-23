@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Circuit.h"
 #include "Enemy.h"
 #include "ProjectileEnemy.h"
 #include "ProjectilePlayer.h"
@@ -107,8 +108,17 @@ void Player::TransitionToCircuitSegment(const bool _left, const orxVECTOR& _curP
 {
     if (_left)
     {
-        m_pCircuitSegment = m_pCircuitSegment->m_pPreviousSegment;
-        SetPosition({ m_pCircuitSegment->m_vRightVertex.fX, m_pCircuitSegment->m_vRightVertex.fY, _curPos.fZ });
+        Circuit* circuit = static_cast<Circuit*>(orxObject_GetUserData(orxOBJECT(orxObject_GetOwner(m_pCircuitSegment->GetOrxObject()))));
+        if (circuit->m_bAllowsTerminalTeleportation
+            || m_pCircuitSegment->m_vLeftVertex.fX > m_pCircuitSegment->m_pPreviousSegment->m_vLeftVertex.fX)
+        {
+            m_pCircuitSegment = m_pCircuitSegment->m_pPreviousSegment;
+            SetPosition({ m_pCircuitSegment->m_vRightVertex.fX, m_pCircuitSegment->m_vRightVertex.fY, _curPos.fZ });
+        }
+        else
+        {
+            SetPosition({ m_pCircuitSegment->m_vLeftVertex.fX, m_pCircuitSegment->m_vLeftVertex.fY, _curPos.fZ });
+        }
     }
     else
     {

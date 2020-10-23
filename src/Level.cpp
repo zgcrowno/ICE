@@ -11,9 +11,14 @@ void Level::OnCreate()
 
     if (orxConfig_PushSection(GetModelName()))
     {
+        // Create level bounds.
+        ScrollObject* levelBounds = ICE::GetInstance().CreateObject("O-LevelBounds");
+        orxObject_SetOwner(levelBounds->GetOrxObject(), GetOrxObject());
+        // Create player and place on designated starting circuit's leftmost terminal.
+        const orxCHAR* playerStartingCircuit = orxConfig_GetString("PlayerStartingCircuit");
         for (ScrollObject* child = GetOwnedChild(); child != nullptr; child = child->GetOwnedSibling())
         {
-            if (!orxString_Compare(child->GetModelName(), orxConfig_GetString("PlayerStartingCircuit")))
+            if (!orxString_Compare(child->GetModelName(), playerStartingCircuit))
             {
                 Player* player = static_cast<Player*>(ICE::GetInstance().CreateObject("O-Player"));
                 orxObject_SetOwner(player->GetOrxObject(), GetOrxObject());

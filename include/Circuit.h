@@ -21,6 +21,7 @@ namespace ice
             const orxVECTOR& _rvNormal);
         virtual void Update(const orxCLOCK_INFO& _rstInfo);
     public:
+        bool m_bAllowsTerminalTeleportation;
         float m_fMaxDeactivationCooldown;
         float m_fDeactivationCooldown;
         float m_fMinEnemySpawnCooldown;

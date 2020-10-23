@@ -43,7 +43,7 @@ orxBOOL Boss::OnCollide(
     const orxVECTOR& _rvPosition,
     const orxVECTOR& _rvNormal)
 {
-    ProjectilePlayer* playerProjectile = ScrollCast<ProjectilePlayer*>(_poCollider);
+    ProjectilePlayer* playerProjectile = dynamic_cast<ProjectilePlayer*>(_poCollider);
     if (playerProjectile != nullptr)
     {
         TakeDamage(1);

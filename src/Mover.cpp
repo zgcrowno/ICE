@@ -46,11 +46,8 @@ void Mover::MoveLeftRight(const bool _left, const float _fDT)
         (m_pCircuitSegment->m_vRightVertex.fX - newXPos) / (m_pCircuitSegment->m_vRightVertex.fX - m_pCircuitSegment->m_vLeftVertex.fX));
     SetPosition({ newXPos, newYPos, curPos.fZ });
     // Transition the mover between circuit segment's if appropriate.
-    if (_left && newXPos <= m_pCircuitSegment->m_vLeftVertex.fX)
-    {
-        TransitionToCircuitSegment(_left, curPos);
-    }
-    else if (!_left && newXPos >= m_pCircuitSegment->m_vRightVertex.fX)
+    if (_left && newXPos <= m_pCircuitSegment->m_vLeftVertex.fX
+        || !_left && newXPos >= m_pCircuitSegment->m_vRightVertex.fX)
     {
         TransitionToCircuitSegment(_left, curPos);
     }
@@ -96,23 +93,42 @@ const bool Mover::RaycastAndHopToActiveCircuit(
     orxOBJECT* hitCircuitSegment = orxObject_Raycast(&_raycastBegin, &_raycastEnd, 0xFFFF, orxPhysics_GetCollisionFlagValue("circuitSegment"), false, &hit, &normal);
     while (hitCircuitSegment != nullptr)
     {
-        Circuit* circuit = static_cast<Circuit*>(orxObject_GetUserData(orxOBJECT(orxObject_GetOwner(hitCircuitSegment))));
-        if (circuit->IsActivated())
+        Circuit* hitCircuit = static_cast<Circuit*>(orxObject_GetUserData(orxOBJECT(orxObject_GetOwner(hitCircuitSegment))));
+        if (hitCircuit->IsActivated())
         {
-            HopToCircuitSegment(hitCircuitSegment);
-            return true;
+            Circuit* curCircuit = static_cast<Circuit*>(orxObject_GetUserData(orxOBJECT(orxObject_GetOwner(m_pCircuitSegment->GetOrxObject()))));
+            if (hitCircuit != curCircuit)
+            {
+                HopToCircuitSegment(hitCircuitSegment);
+                return true;
+            }
+            else
+            {
+                IterateCircuitRaycast(hitCircuitSegment, _raycastBegin, _raycastEnd, _directionVec);
+            }
         }
         else
         {
-            orxVECTOR curPos = orxVECTOR_0;
-            GetPosition(curPos);
-            CircuitSegment* seg = static_cast<CircuitSegment*>(orxObject_GetUserData(hitCircuitSegment));
-            orxVECTOR hitCircuitSegmentCenter = seg->GetCenterAtX(curPos.fX);
-            _raycastBegin = { hitCircuitSegmentCenter.fX, hitCircuitSegmentCenter.fY, curPos.fZ };
-            _raycastEnd = *orxVector_Add(&_raycastEnd, &_raycastBegin, &_directionVec);
-            hitCircuitSegment = orxObject_Raycast(&_raycastBegin, &_raycastEnd, 0xFFFF, orxPhysics_GetCollisionFlagValue("circuitSegment"), false, &hit, &normal);
+            IterateCircuitRaycast(hitCircuitSegment, _raycastBegin, _raycastEnd, _directionVec);
         }
     }
 
     return false;
+}
+
+void Mover::IterateCircuitRaycast(
+    orxOBJECT* _hitCircuitSegment,
+    orxVECTOR& _raycastBegin,
+    orxVECTOR& _raycastEnd,
+    const orxVECTOR& _directionVec)
+{
+    orxVECTOR curPos = orxVECTOR_0;
+    GetPosition(curPos);
+    CircuitSegment* seg = static_cast<CircuitSegment*>(orxObject_GetUserData(_hitCircuitSegment));
+    orxVECTOR hitCircuitSegmentCenter = seg->GetCenterAtX(curPos.fX);
+    _raycastBegin = { hitCircuitSegmentCenter.fX, hitCircuitSegmentCenter.fY, curPos.fZ };
+    _raycastEnd = *orxVector_Add(&_raycastEnd, &_raycastBegin, &_directionVec);
+    orxVECTOR hit = orxVECTOR_0;
+    orxVECTOR normal = orxVECTOR_0;
+    _hitCircuitSegment = orxObject_Raycast(&_raycastBegin, &_raycastEnd, 0xFFFF, orxPhysics_GetCollisionFlagValue("circuitSegment"), false, &hit, &normal);
 }

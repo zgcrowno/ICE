@@ -7,6 +7,8 @@ void Circuit::OnCreate()
 {
     if (orxConfig_PushSection(GetModelName()))
     {
+        // Set up allowance of terminal teleportation.
+        m_bAllowsTerminalTeleportation = orxConfig_GetBool("AllowsTerminalTeleportation");
         // Set up deactivation cooldown.
         m_fMaxDeactivationCooldown = orxConfig_GetFloat("MaxDeactivationCooldown");
         // Set up enemy spawn cooldown.

@@ -30,5 +30,10 @@ namespace ice
             orxVECTOR& _raycastBegin,
             orxVECTOR& _raycastEnd,
             const orxVECTOR& _directionVec);
+        void IterateCircuitRaycast(
+            orxOBJECT* _hitCircuitSegment,
+            orxVECTOR& _raycastBegin,
+            orxVECTOR& _raycastEnd,
+            const orxVECTOR& _directionVec);
     };
 }
